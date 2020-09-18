@@ -57,12 +57,12 @@ jobs:
     - name: Go Fmt
       run: go fmt ./... && [[ -z `git status -s` ]]
 
-    - name: License Check
-      run: |
-        go fmt ./... && [[ -z `git status -s` ]]
-        sh before_validate_license.sh
-        chmod u+x /tmp/tools/license/license-header-checker
-        /tmp/tools/license/license-header-checker -v -a -r -i vendor  /tmp/tools/license/license.txt . go  && [[ -z `git status -s` ]]
+#     - name: License Check
+#       run: |
+#         go fmt ./... && [[ -z `git status -s` ]]
+#         sh before_validate_license.sh
+#         chmod u+x /tmp/tools/license/license-header-checker
+#         /tmp/tools/license/license-header-checker -v -a -r -i vendor  /tmp/tools/license/license.txt . go  && [[ -z `git status -s` ]]
 
     - name: Go Test
       run: GO111MODULE=on && go mod vendor && go test ./... -bench . -race -v -coverprofile=coverage.txt
